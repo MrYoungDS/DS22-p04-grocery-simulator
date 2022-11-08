@@ -1,5 +1,6 @@
 # Grocery Store Simulator 
 
+
 ## Backstory
 You have been hired to develop a prototype simulator for this year's most anticipated Grocery Store Simulation game creatively named “MSON Grocery Store Simulator”. Will you rise to the challenge?
 
