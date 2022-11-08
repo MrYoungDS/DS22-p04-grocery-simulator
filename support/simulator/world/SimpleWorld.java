@@ -38,7 +38,7 @@ public class SimpleWorld extends World {
     @Override
     public void tick() {
         if (BigBrother.getBigBrother().getTime() % shopperRate == 0) {
-            List<GroceryInterface> groceries = getgroceries();
+            List<GroceryInterface> groceries = getGroceries();
             new Shopper(groceries);
         }
 
@@ -49,7 +49,7 @@ public class SimpleWorld extends World {
      * @return
      *          a {@link List} of {@link GroceryInterface} items
      */
-    private List<GroceryInterface> getgroceries() {
+    private List<GroceryInterface> getGroceries() {
         List<GroceryInterface> groceries = new LinkedList<GroceryInterface>();
         do {
             groceries.add(nextGrocery());

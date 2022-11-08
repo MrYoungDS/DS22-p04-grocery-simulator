@@ -1,9 +1,6 @@
 package simulator.checkout;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,11 +8,14 @@ import simulator.grocery.GroceryInterface;
 import config.Configuration;
 import config.Groceries;
 
+import java.util.List;
+import java.util.LinkedList;
+
 public class AbstractReceiptTest {
 
     private List<GroceryInterface> groceries;
 
-    @Before
+    @BeforeEach
     public void setup() {
         groceries = new LinkedList<GroceryInterface>();
         groceries.add(Groceries.getApple());
@@ -23,7 +23,7 @@ public class AbstractReceiptTest {
         groceries.add(Groceries.getBeef());
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testSubTotal() {
         AbstractReceipt receipt = Configuration.getReceiptImplementation(
                 groceries, 0.0);
@@ -33,7 +33,7 @@ public class AbstractReceiptTest {
         assertEquals(expectedSubTotal, receipt.getSubtotal(), 0.00001);
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testSaleValue1() {
         AbstractReceipt receipt = Configuration.getReceiptImplementation(
                 groceries, 0.25);
@@ -46,7 +46,7 @@ public class AbstractReceiptTest {
         assertEquals(expectedSaleValue, receipt.getSaleValue(), 0.00001);
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testSaleValue2() {
         AbstractReceipt receipt = Configuration.getReceiptImplementation(
                 groceries, 0.15);
@@ -58,5 +58,4 @@ public class AbstractReceiptTest {
         double expectedSaleValue = expectedSubTotal - (expectedSubTotal * 0.15);
         assertEquals(expectedSaleValue, receipt.getSaleValue(), 0.00001);
     }
-
 }

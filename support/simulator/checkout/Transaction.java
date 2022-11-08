@@ -14,7 +14,7 @@ public final class Transaction {
 
     private final AbstractReceipt receipt;
     private final Shopper shopper;
-    private final int timesteps;
+    private final int timeSteps;
     private final int startTime;
 
     /**
@@ -24,23 +24,23 @@ public final class Transaction {
      * must be at least 1.
      * @param receipt the receipt associated with this {@link Transaction}
      * @param shopper the shopper associated with this {@link Transaction}
-     * @param timesteps the number of time steps to complete this transaction.
+     * @param timeSteps the number of time steps to complete this transaction.
      * @throws NullPointerException if {@code receipt} of {@code shopper} are {@code null}
-     * @throws IllegalArgumentException if {@code timesteps} is less than 1
+     * @throws IllegalArgumentException if {@code timeSteps} is less than 1
      */
-    public Transaction(final AbstractReceipt receipt, final Shopper shopper, int timesteps) {
+    public Transaction(final AbstractReceipt receipt, final Shopper shopper, int timeSteps) {
         if (receipt == null || shopper == null) {
             throw new NullPointerException(
                     "Receipt and Shopper must be non-null");
         }
-        if (timesteps < 1) {
+        if (timeSteps < 1) {
             throw new IllegalArgumentException(
                     "Cannot perform transaction in less than 1 time step.");
         }
         this.receipt = receipt;
         this.shopper = shopper;
         this.startTime = BigBrother.getBigBrother().getTime();
-        this.timesteps = timesteps;
+        this.timeSteps = timeSteps;
     }
 
     /**
@@ -68,7 +68,7 @@ public final class Transaction {
      * @return the number of time steps required to complete this transaction.
      */
     public int getTimeSteps() {
-        return timesteps;
+        return timeSteps;
     }
 
     /**
@@ -79,5 +79,4 @@ public final class Transaction {
     public int getStartTime() {
         return startTime;
     }
-
 }

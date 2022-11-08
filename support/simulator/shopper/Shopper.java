@@ -94,7 +94,7 @@ public class Shopper {
      * already received.
      *
      * A satisfied {@link Shopper} will upvote the {@link AbstractGroceryStore}
-     * they visited on the ever growing social networking site
+     * they visited on the ever-growing social networking site
      * {@link MyFacePagePlus}. If the {@link Shopper} was not satisfied, they
      * will downvote the {@link AbstractGroceryStore}.
      *
@@ -261,8 +261,8 @@ public class Shopper {
     /**
      * Finds the shortest line that can be entered.
      * @param lines
-     *              the list of {@link CheckoutlineInterface}s associated
-     *              with the {@link AbstractGrocery} the {@link Shopper}
+     *              the list of {@link CheckoutLineInterface}s associated
+     *              with the {@link AbstractGroceryStore} the {@link Shopper}
      *              is in.
      * @return
      *          the {@link CheckoutLineInterface} with the fewest number
@@ -316,5 +316,4 @@ public class Shopper {
 
         return selectLine(store.getLines());
     }
-
 }

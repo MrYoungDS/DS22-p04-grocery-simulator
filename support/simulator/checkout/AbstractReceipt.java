@@ -5,10 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import simulator.grocery.GroceryInterface;
+import simulator.shopper.Shopper;
 
 /**
  * A {@link AbstractReceipt} is a list of purchased {@link GroceryInterface} items,
- * a sub-total for those items, a discount for the purchase, and a sale value.
+ * a subtotal for those items, a discount for the purchase, and a sale value.
  *
  * @author jcollard, jddevaug
  *
@@ -68,10 +69,10 @@ public abstract class AbstractReceipt {
     }
 
     /**
-     * Returns the sub-total of this {@link AbstractReceipt}. That is, the sum
+     * Returns the subtotal of this {@link AbstractReceipt}. That is, the sum
      * of the price of all of the {@link GroceryInterface} items associated with it.
      *
-     * @return Returns the sub-total of this {@link AbstractReceipt}.
+     * @return Returns the subtotal of this {@link AbstractReceipt}.
      */
     public abstract double getSubtotal();
 

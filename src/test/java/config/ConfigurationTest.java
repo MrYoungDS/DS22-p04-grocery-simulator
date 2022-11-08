@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import simulator.grocery.GroceryInterface;
 
+import java.util.LinkedList;
+
 public class ConfigurationTest {
 
     @Test

@@ -1,8 +1,10 @@
 package simulator.grocery;
 
+import simulator.shopper.Shopper;
+
 /**
  * A {@link GroceryInterface} describes an item that is available.
- * for sale in a {@link GroceryStore}
+ * for sale in a {@link Grocery}
  * @author jcollard, jddevaug
  *
  */
@@ -24,7 +26,7 @@ public interface GroceryInterface {
 
     /**
      * Returns the cost of this {@link GroceryInterface}. This is the
-     * amount that a {@link GroceryStore} pays a vendor for the item.
+     * amount that a {@link Grocery} pays a vendor for the item.
      * This must be a value greater than 0.
      * @return the cost of this {@link GroceryInterface}
      */
@@ -37,5 +39,4 @@ public interface GroceryInterface {
      * @return the handling rating associated with this {@link GroceryInterface}
      */
     double getHandlingRating();
-
 }

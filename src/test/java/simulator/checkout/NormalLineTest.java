@@ -1,67 +1,69 @@
 package simulator.checkout;
 
-import static org.junit.Assert.*;
-
-import java.util.LinkedList;
-
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import config.Configuration;
 import config.Groceries;
 import simulator.grocery.GroceryInterface;
 import simulator.shopper.Shopper;
 
+import java.util.LinkedList;
+
 public class NormalLineTest {
 
+    private Shopper alice;
     private Shopper bob;
-    private Shopper pete;
-    private Shopper mete;
+    private Shopper eve;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         LinkedList<GroceryInterface> shortList = new LinkedList<GroceryInterface>();
         shortList.add(Groceries.getApple());
         shortList.add(Groceries.getBeef());
 
-        bob = new Shopper(shortList);
+        alice = new Shopper(shortList);
 
         LinkedList<GroceryInterface> whereIsTheBeef = new LinkedList<GroceryInterface>();
         for(int i = 0; i < 15; i++)
             whereIsTheBeef.add(Groceries.getBeef());
 
-        pete = new Shopper(whereIsTheBeef);
+        bob = new Shopper(whereIsTheBeef);
 
         LinkedList<GroceryInterface> tooMuchBeef = new LinkedList<GroceryInterface>();
         for(int i = 0; i < 100; i++)
             tooMuchBeef.add(Groceries.getBeef());
 
-        mete = new Shopper(tooMuchBeef);
+        eve = new Shopper(tooMuchBeef);
     }
 
-    @Test (timeout = 100)
+    @Test
     public void test() {
         CheckoutLineInterface col = Configuration.getNormalLine();
+        assertTrue(col.canEnterLine(alice));
+        col.enqueue(alice);
         assertTrue(col.canEnterLine(bob));
         col.enqueue(bob);
-        assertTrue(col.canEnterLine(pete));
-        col.enqueue(pete);
-        assertTrue(col.canEnterLine(mete));
-        col.enqueue(mete);
+        assertTrue(col.canEnterLine(eve));
+        col.enqueue(eve);
 
+        assertEquals(alice, col.dequeue());
         assertEquals(bob, col.dequeue());
-        assertEquals(pete, col.dequeue());
-        assertEquals(mete, col.dequeue());
+        assertEquals(eve, col.dequeue());
     }
 
-    @Test (timeout = 100, expected = NullPointerException.class)
+    @Test
     public void testNPE1(){
-        Configuration.getNormalLine().enqueue(null);
+        assertThrows(NullPointerException.class,
+                () -> Configuration.getExpressLine().enqueue(null));
     }
 
-    @Test (timeout = 100, expected = NullPointerException.class)
+    @Test
     public void testNPE2(){
-        Configuration.getNormalLine().canEnterLine(null);
+        assertThrows(NullPointerException.class,
+                () -> Configuration.getExpressLine().canEnterLine(null));
     }
-
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import simulator.bigbrother.BigBrother;
 import simulator.bigbrother.BigBrotherIsWatchingYouException;
 import simulator.store.AbstractGroceryStore;
 
@@ -25,14 +26,13 @@ public final class MyFacePagePlus {
     private int votes;
 
     /**
-     * Returns the current rating for the specified {@link AbstractGroceryStore}
-     * . The value is a rating in the range [0.10, 1.0]. All
+     * Returns the current rating for the specified {@link AbstractGroceryStore}.
+     * The value is a rating in the range [0.10, 1.0]. All
      * {@link AbstractGroceryStore}s start with the highest possible rating.
      *
      * @param store
      *            the store to look up
      * @return the current rating for the specified {@link AbstractGroceryStore}
-     *         .
      */
     public double getRating(final AbstractGroceryStore store) {
         if (store == null) {
@@ -133,5 +133,4 @@ public final class MyFacePagePlus {
         }
         this.ratings = new HashMap<AbstractGroceryStore, Double>();
     }
-
 }

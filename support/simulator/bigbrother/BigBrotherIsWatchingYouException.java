@@ -10,12 +10,14 @@ package simulator.bigbrother;
 public class BigBrotherIsWatchingYouException extends RuntimeException {
 
     private static final long serialVersionUID = 3397264524349256866L;
+
     /**
      * Constructs an {@link Exception} to be thrown.
      */
     public BigBrotherIsWatchingYouException() {
         super();
     }
+
     /**
      * Constructs an {@link Exception} with the message
      * to be thrown.
@@ -25,5 +27,4 @@ public class BigBrotherIsWatchingYouException extends RuntimeException {
     public BigBrotherIsWatchingYouException(final String message) {
         super(message);
     }
-
 }

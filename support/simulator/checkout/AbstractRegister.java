@@ -34,7 +34,7 @@ public abstract class AbstractRegister {
     private double runningCost = 0;
     private boolean running;
     /**
-     * Constructs an {@link Abstract} and
+     * Constructs an {@link AbstractRegister} and
      * connects it to {@link BigBrother}.
      */
     protected AbstractRegister() {

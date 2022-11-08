@@ -25,7 +25,7 @@ public interface CheckoutLineInterface extends QueueInterface<Shopper> {
     boolean canEnterLine(Shopper shopper);
 
     /**
-     * Adds {@code shopper} to the end of this {@link CheckoutLineInterace}.
+     * Adds {@code shopper} to the end of this {@link CheckoutLineInterface}.
      * This operation should execute in constant time. That is, it should be
      * executed in O(1). For convenience, this method returns the modified
      * {@link QueueInterface}
@@ -40,5 +40,4 @@ public interface CheckoutLineInterface extends QueueInterface<Shopper> {
      *             {@link CheckoutLineInterface#canEnterLine(Shopper)}
      */
     QueueInterface<Shopper> enqueue(Shopper shopper);
-
 }

@@ -44,7 +44,6 @@ public final class BigBrother {
             throw new NullPointerException();
         }
         shoppers.add(s);
-
     }
 
     /**
@@ -133,6 +132,7 @@ public final class BigBrother {
     }
 
     private static final BigBrother BIG_BROTHER_INSTANCE = new BigBrother();
+
     /**
      * Constructs a BigBrother instance.
      */
@@ -145,5 +145,4 @@ public final class BigBrother {
         shoppers = new HashSet<Shopper>();
         transMap = new HashMap<AbstractGroceryStore, Set<Transaction>>();
     }
-
 }

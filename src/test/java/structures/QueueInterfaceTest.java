@@ -1,12 +1,13 @@
 package structures;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import config.Configuration;
 
@@ -14,18 +15,17 @@ public class QueueInterfaceTest {
 
     private QueueInterface<String> queue;
 
-    @Before
+    @BeforeEach
     public void setup() {
-        queue = null;
         queue = Configuration.getQueueImplementation();
-        if(queue == null)
-            fail("You have not set your queue in the configuration class.");
+        assertNotNull(queue,
+                "You have not set your queue in the configuration class.");
         QueueInterface<String> queue2 = Configuration.getQueueImplementation();
-        if(queue == queue2)
-            fail("The getQueueImplementation method must return a NEW queue");
+        assertNotEquals(queue, queue2,
+                "The getQueueImplementation method must return a NEW queue");
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testEnqueueSize() {
         queue.enqueue("One");
         assertEquals(1, queue.size());
@@ -37,16 +37,17 @@ public class QueueInterfaceTest {
         assertEquals(4, queue.size());
     }
 
-    @Test (timeout = 500)
+    @Test
     public void testEnqueueSize2() {
         QueueInterface<Integer> queue = Configuration.getQueueImplementation();
-        for(int i = 0; i < 100000; i ++){
+        int max = 100000;
+        for(int i = 0; i < max; i ++){
             assertEquals(i, queue.size());
             queue.enqueue(i);
         }
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testEnqueueDequeueSize(){
         queue.enqueue("One");
         assertEquals(1, queue.size());
@@ -66,16 +67,17 @@ public class QueueInterfaceTest {
         assertEquals(0, queue.size());
     }
 
-    @Test (timeout = 500)
+    @Test
     public void testEnqueueDequeueSize2(){
         QueueInterface<Integer> queue = Configuration.getQueueImplementation();
-        int max = 100000;
-        for(int i = 0; i < max; i ++){
+        //int max = 100000;
+        int max = 10;
+        for(int i = 0; i < max; i++){
             assertEquals(i, queue.size());
             queue.enqueue(i);
         }
 
-        for(int i = max - 1; i >= max; i ++){
+        for(int i = max - 1; i >= 0; i--){
             assertEquals(i, queue.size());
             Integer r = queue.dequeue();
             assertEquals((max-1) - i, r.intValue());
@@ -83,9 +85,8 @@ public class QueueInterfaceTest {
         }
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testEnqueueIsEmptyDequeue(){
-
         assertTrue(queue.isEmpty());
 
         assertEquals(queue, queue.enqueue("hello"));
@@ -111,10 +112,9 @@ public class QueueInterfaceTest {
 
         assertEquals("world", queue.dequeue());
         assertTrue(queue.isEmpty());
-
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testEnqueueToString(){
         assertEquals("[]", queue.toString());
 
@@ -127,27 +127,32 @@ public class QueueInterfaceTest {
 
         queue.enqueue("World");
         assertEquals("[Hello, World]", queue.toString());
-
     }
 
-    @Test (timeout = 100, expected = NullPointerException.class)
+    @Test
     public void testNullPointerException(){
-        queue.enqueue(null);
+        assertThrows(NullPointerException.class,
+                () -> queue.enqueue(null),
+                "Trying to enqueue a null value should throw null pointer.");
     }
 
-    @Test (timeout = 100, expected = IllegalStateException.class)
+    @Test
     public void testIllegalStateException1(){
-        queue.dequeue();
+
+        assertThrows(IllegalStateException.class,
+                () -> queue.dequeue(),
+                "Trying to dequeue an empty list should throw illegal state.");
     }
 
-    @Test (timeout = 100, expected = IllegalStateException.class)
+    @Test
     public void testIllegalStateException2(){
         queue.enqueue("One").enqueue("Two").enqueue("Three");
 
         queue.dequeue();
         queue.dequeue();
         queue.dequeue();
-        queue.dequeue();
+        assertThrows(IllegalStateException.class,
+                () -> queue.dequeue(),
+                "Trying to dequeue more than you enqueue should throw illegal state.");
     }
-
 }

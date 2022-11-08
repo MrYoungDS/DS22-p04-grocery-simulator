@@ -1,14 +1,13 @@
 package simulator.grocery;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import config.Groceries;
 
 public class TestGroceries {
 
-    @Test (timeout = 100)
+    @Test
     public void testMilk() {
         GroceryInterface milk = Groceries.getMilk();
         assertEquals("Milk", milk.getName());
@@ -17,7 +16,7 @@ public class TestGroceries {
         assertEquals(0.1, milk.getHandlingRating(), 0);
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testEggs() {
         GroceryInterface eggs = Groceries.getEggs();
         assertEquals("Eggs", eggs.getName());
@@ -26,7 +25,7 @@ public class TestGroceries {
         assertEquals(0.8, eggs.getHandlingRating(), 0);
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testColdPocket() {
         GroceryInterface coldPocket = Groceries.getColdPocket();
         assertEquals("Cold Pocket", coldPocket.getName());
@@ -35,7 +34,7 @@ public class TestGroceries {
         assertEquals(0.13, coldPocket.getHandlingRating(), 0);
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testChips() {
         GroceryInterface chips = Groceries.getChips();
         assertEquals("Chips", chips.getName());
@@ -44,7 +43,7 @@ public class TestGroceries {
         assertEquals(0.4, chips.getHandlingRating(), 0);
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testBeef() {
         GroceryInterface wheresTheBeef = Groceries.getBeef();
         assertEquals("Beef", wheresTheBeef.getName());
@@ -53,7 +52,7 @@ public class TestGroceries {
         assertEquals(0.75, wheresTheBeef.getHandlingRating(), 0);
     }
 
-    @Test (timeout = 100)
+    @Test
     public void testApple() {
         GroceryInterface apple = Groceries.getApple();
         assertEquals("Apple", apple.getName());
@@ -61,5 +60,4 @@ public class TestGroceries {
         assertEquals(0.17, apple.getCost(), 0.0);
         assertEquals(0.25, apple.getHandlingRating(), 0);
     }
-
 }

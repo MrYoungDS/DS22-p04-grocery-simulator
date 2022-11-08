@@ -3,8 +3,11 @@ package simulator.store;
 import java.util.List;
 
 import simulator.bigbrother.BigBrother;
+import simulator.bigbrother.BigBrotherIsWatchingYouException;
+import simulator.checkout.AbstractRegister;
 import simulator.checkout.CheckoutLineInterface;
 import simulator.checkout.Transaction;
+import simulator.shopper.Shopper;
 
 /**
  * An {@link AbstractGroceryStore} defines a store in the Grocery Store
